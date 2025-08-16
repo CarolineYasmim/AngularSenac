@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CardPersonagem } from '../card-personagem/card-personagem';
 import { Personagens } from '../../services/personagensService';
+import { HttpClientModule } from '@angular/common/http';
 interface IPersonagem {
   id: number;
   nome: string;
@@ -10,18 +11,30 @@ interface IPersonagem {
 
 @Component({
   selector: 'app-lista-personagem',
-  imports: [CardPersonagem],
+  standalone: true,
+  imports: [HttpClientModule],
   templateUrl: './lista-personagem.html',
   styleUrl: './lista-personagem.css',
 })
-export class ListaPersonagem {
+export class ListaPersonagem implements OnInit, OnDestroy {
   personagens: IPersonagem[] = []
 
-  constructor(private personagemService: Personagens) {
-      this.personagens = this.personagemService.getPersonagensService();
-    }
+  ngOnInit() {
+    console.log('ngOnInit');
+    this.personagens = this.personagemService.getPersonagens();
+  }
 
-    incremetarVotoPersonagem(id: number) {
-      this.personagemService.votarPersonagem(id);
-    }
+  ngOnDestroy() {
+    console.log('ngOnDestroy');
+  }
+
+  constructor(private personagemService: Personagens) {
+    this.personagemService.getPersonagens().subscribe((personagens) => {
+      this.personagens = personagens;
+    });
+  }
+
+  incremetarVotoPersonagem(id: number) {
+    this.personagemService.votarPersonagem(id);
+  }
 }
