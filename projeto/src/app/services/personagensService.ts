@@ -14,23 +14,24 @@ interface IPersonagem {
 })
 
 export class Personagens {
+  private personagens: IPersonagem[] = [];
 
-  constructor(private http: HttpClient) {
-    this.getPersonagens()
+  constructor(private httpClient: HttpClient) { }
+
+  baseUrl = 'http://localhost:3000';
+
+
+  getPersonagens(): Observable<IPersonagem[]> {
+    return this.httpClient.get<IPersonagem[]>(`${this.baseUrl}/personagens`);
   }
 
 
-  getPersonagens() {
-    return this.http.get('http://localhost:3000/personagens').subscribe((res: IPersonagem[]) => {});
+
+  votarPersonagem(id: number) {
+   return this.httpClient.patch(`${this.baseUrl}/personagens/${id}`, {votos:10});
   }
 
 
 
-    votarPersonagem(id: number) {
-     
-    }
 
-
-
-
-  }
+}
