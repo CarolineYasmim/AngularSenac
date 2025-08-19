@@ -31,6 +31,22 @@ export class Personagens {
    return this.httpClient.patch(`${this.baseUrl}/personagens/${id}`, {votos:10});
   }
 
+  metodoQualquer(){
+    return this.httpClient.delete(`${this.baseUrl}`).subscribe({
+      next: () => {
+        console.log('Deu certo');
+      },
+      error: (err) => {
+        console.log('Deu errado');
+      },
+      complete: () => {
+        console.log('Completado');
+      }
+    })
+  }
+
+
+
 
 
 

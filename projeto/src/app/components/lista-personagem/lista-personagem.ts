@@ -21,7 +21,16 @@ export class ListaPersonagem implements OnInit, OnDestroy {
 
   carregarPersonagens() {
     this.personagemService.getPersonagens().subscribe((respostaDaAPI) => {
-      this.personagens = respostaDaAPI;
+      next: (personagens) => {
+        this.personagens = personagens;
+      }
+      error: (err) => {
+        console.log('Erro ao carregar personagens da API');
+      }
+      complete: () => {
+        console.log('Carregamento concluído');
+      }
+      // this.personagens = respostaDaAPI;
     });
   }
 
@@ -42,4 +51,5 @@ export class ListaPersonagem implements OnInit, OnDestroy {
     this.personagemService.votarPersonagem(id);
     this.carregarPersonagens();
   }
+
 }
