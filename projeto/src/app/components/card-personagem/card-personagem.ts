@@ -12,5 +12,5 @@ export class CardPersonagem {
   totalVotos = input.required<number>();
   id = input.required<number>();
 
-  votou = output<number>();
+  votou = output<{id:number; totalVotos:number}>();
 }

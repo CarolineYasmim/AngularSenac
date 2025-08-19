@@ -26,10 +26,13 @@ export class Personagens {
   }
 
 
-
-  votarPersonagem(id: number) {
-   return this.httpClient.patch(`${this.baseUrl}/personagens/${id}`, {votos:10});
+  votarPersonagem(id: number, totalVotos: number) {
+   return this.httpClient.patch(`${this.baseUrl}/personagens/${id}`, {totalVotos:totalVotos+1});
   }
+  
+ 
+
+
 
 
 

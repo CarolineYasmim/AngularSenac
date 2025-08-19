@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CardPersonagem } from '../card-personagem/card-personagem';
 import { Personagens } from '../../services/personagensService';
-import { HttpClientModule } from '@angular/common/http';
+import { CardPersonagem } from "../card-personagem/card-personagem";
 interface IPersonagem {
   id: number;
   nome: string;
@@ -12,7 +11,7 @@ interface IPersonagem {
 @Component({
   selector: 'app-lista-personagem',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [CardPersonagem],
   templateUrl: './lista-personagem.html',
   styleUrl: './lista-personagem.css',
 })
@@ -38,8 +37,8 @@ export class ListaPersonagem implements OnInit, OnDestroy {
     this.carregarPersonagens();
   }
 
-  incremetarVotoPersonagem(id: number) {
-    this.personagemService.votarPersonagem(id);
+  incremetarVotoPersonagem(evento:{id:number; totalVotos:number}) {
+    this.personagemService.votarPersonagem(evento.id, evento.totalVotos);
     this.carregarPersonagens();
   }
 }

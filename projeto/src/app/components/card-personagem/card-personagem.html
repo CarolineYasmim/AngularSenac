@@ -6,5 +6,5 @@
   } @else {
   <p>Votos: {{ totalVotos() }}</p>
   }
-  <button (click)="votou.emit(id())">Votar</button>
+  <button (click)="votou.emit({id:id(), totalVotos:totalVotos()})">Votar</button>
 </div>
