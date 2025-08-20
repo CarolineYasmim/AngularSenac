@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -27,14 +27,6 @@ export class Personagens {
 
 
   votarPersonagem(id: number, totalVotos: number) {
-   return this.httpClient.patch(`${this.baseUrl}/personagens/${id}`, {totalVotos:totalVotos+1});
+   return this.httpClient.patch(`${this.baseUrl}/personagens/${id}`, {votos: totalVotos+1});
   }
-  
- 
-
-
-
-
-
-
 }
