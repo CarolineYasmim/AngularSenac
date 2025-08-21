@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-interface IPersonagem {
+ export interface IPersonagem {
   id: number;
   nome: string;
   imagem: string;
@@ -14,7 +14,6 @@ interface IPersonagem {
 })
 
 export class Personagens {
-  private personagens: IPersonagem[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
@@ -30,7 +29,7 @@ export class Personagens {
    return this.httpClient.patch(`${this.baseUrl}/personagens/${id}`, {votos: totalVotos+1});
   }
 
-  getPersonagemPorId(id: number): Observable<IPersonagem> {
+  getPersonagemPorId(id: number) {
     return this.httpClient.get<IPersonagem>(`${this.baseUrl}/personagens/${id}`);
   }
 }
