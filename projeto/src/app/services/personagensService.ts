@@ -29,4 +29,8 @@ export class Personagens {
   votarPersonagem(id: number, totalVotos: number) {
    return this.httpClient.patch(`${this.baseUrl}/personagens/${id}`, {votos: totalVotos+1});
   }
+
+  getPersonagemPorId(id: number): Observable<IPersonagem> {
+    return this.httpClient.get<IPersonagem>(`${this.baseUrl}/personagens/${id}`);
+  }
 }

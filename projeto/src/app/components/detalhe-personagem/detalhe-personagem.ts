@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detalhe-personagem',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   templateUrl: './detalhe-personagem.html',
   styleUrl: './detalhe-personagem.css'
 })
-export class DetalhePersonagem {
+export class DetalhePersonagem implements OnInit {
+
+  idPersonagem: number = 0;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.idPersonagem = Number(this.route.snapshot.paramMap.get('id'));
+  }
 }
