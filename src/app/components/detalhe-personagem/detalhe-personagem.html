@@ -1,0 +1,14 @@
+
+<div class="card">
+    @if(personagem){
+        <h1 class="titulo">Detalhes do Personagem</h1>
+            <img class="imagem" [src]="personagem.imagem" [alt]="personagem.nome" />
+            <div class="info">
+                <p class="nome">{{ personagem.nome }}</p>
+                <p class="votos">Votos: {{ personagem.votos }}</p>
+                <button (click)="votarPersonagem(personagem.id, personagem.votos)">Votar</button>
+            </div>
+    } @else {
+        <p>Personagem não encontrado</p>
+    }
+</div>

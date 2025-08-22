@@ -1,0 +1,12 @@
+<div class="card">
+  <a [routerLink]="['/personagens', id()]" class="link-navegacao">
+    <img [src]="imagem()" [alt]="nome()" />
+    <h3>{{ nome() }}</h3>
+  </a>
+  @if(totalVotos() === 0){
+  <p class="sem-votos">Nenhum voto ainda</p>
+  } @else {
+  <p>Votos: {{ totalVotos() }}</p>
+  }
+  <button (click)="votou.emit({id:id(), totalVotos:totalVotos()})">Votar</button>
+</div>
